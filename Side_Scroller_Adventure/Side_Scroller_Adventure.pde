@@ -1,7 +1,5 @@
 //This is gonna be where all the ints and booleans are
 //boolean Jumping //Still working on the jumping 
-boolean MoveLeft;
-boolean MoveRight;
 boolean Jump;
 boolean Floor;
 boolean MoveDown;
@@ -9,20 +7,23 @@ float x = 100;
 float y = 0;
 float x2 = -0.75;
 float speed = 0;
-float gravity = 0.05;
+float gravity = 0.1;
 void setup() {
-  size(200, 200);
-
+  size(320, 240);
 }
 
 void draw() {
 
-  background(255);
+  PImage Forest;
+
+  Forest = loadImage("background2.gif");
+  background(Forest);
+  //background(255);
 
   fill(175);
   stroke(0);
-  rectMode(CENTER);
-  rect(x, y, 10, 10);
+  ellipseMode(CENTER);
+  ellipse(x, y, 10, 10);
 
   y = y + speed;
   speed = speed + gravity;
@@ -35,7 +36,7 @@ void draw() {
     y = height-5;
   }
 
- if (key == CODED)
+  if (key == CODED)
   {
     if (keyCode == UP)
     {
@@ -82,7 +83,5 @@ void draw() {
       }
     }
   }
-
-
 }
 
