@@ -20,10 +20,26 @@ public class Ball
     acc = 0;
   }
   
-  public void move()
+  public boolean collision(ArrayList<Block> b)
+  {
+    for(Block spot: b)
+      {
+        if (spot.loc.x < loc.x && spot.loc.x + spot.size.x  > loc.x &&
+          spot.loc.y < loc.y && spot.loc.y + spot.size.y > loc.y )
+           return true;
+      }
+      return false; 
+  }
+  
+  public void move(ArrayList<Block> b)
   {
       spdUpdate();
-      loc.y += vel;
+      
+      if(!collision(b))
+        {
+          loc.y += vel;
+        }
+        
       createBall();
   }
 
@@ -36,6 +52,11 @@ public class Ball
         if (keyCode == UP) 
         {
           acc = -1;
+        }
+        else
+        {
+          acc = 0;
+          vel = 0;
         }
     }
     else if (loc.y < height -20)
